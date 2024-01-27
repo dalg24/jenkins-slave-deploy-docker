@@ -1,0 +1,9 @@
+TZ=America/New_York
+PATH=/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin
+59 20 * * * date > /proc/1/fd/1 2>/proc/1/fd/2; cd /master; docker-compose --env-file .env.padirac03 down slave > /proc/1/fd/1 2>/proc/1/fd/2
+59 20 * * * date > /proc/1/fd/1 2>/proc/1/fd/2; cd /master; docker-compose --env-file .env.padirac10 down slave > /proc/1/fd/1 2>/proc/1/fd/2
+59 20 * * * date > /proc/1/fd/1 2>/proc/1/fd/2; cd /master; docker-compose --env-file .env.padirac11 down slave > /proc/1/fd/1 2>/proc/1/fd/2
+15 02 * * * date > /proc/1/fd/1 2>/proc/1/fd/2; cd /master; docker-compose --env-file .env.padirac03 up -d slave > /proc/1/fd/1 2>/proc/1/fd/2
+15 02 * * * date > /proc/1/fd/1 2>/proc/1/fd/2; cd /master; docker-compose --env-file .env.padirac10 up -d slave > /proc/1/fd/1 2>/proc/1/fd/2
+15 02 * * * date > /proc/1/fd/1 2>/proc/1/fd/2; cd /master; docker-compose --env-file .env.padirac11 up -d slave > /proc/1/fd/1 2>/proc/1/fd/2
+# remember to end this file with an empty new line

@@ -1,5 +1,27 @@
 version: '3'
 services:
+  master:
+    build:
+      context: .
+      dockerfile: Dockerfile_slave
+      # Default values are set in ".env" file but values in the shell take
+      # precedence over them.
+      args:
+        - DOCKER_ENGINE_VERSION=${DOCKER_ENGINE_VERSION}
+        - DOCKER_COMPOSE_VERSION=${DOCKER_COMPOSE_VERSION}
+    environment:
+      - TZ=America/New_York
+    restart: always
+    command: sh -c "crontab /etc/cron.d/master; cron -f -L 15"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./mycron:/etc/cron.d/master:ro
+      - ./docker-compose.yml:/master/docker-compose.yml:ro
+      - ./Dockerfile_slave:/master/Dockerfile_slave:ro
+      - ./.env.padirac03:/master/.env.padirac03:ro
+      - ./.env.padirac10:/master/.env.padirac10:ro
+      - ./.env.padirac11:/master/.env.padirac11:ro
+    network_mode: none
   slave:
     build:
       context: .
