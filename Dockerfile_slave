@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM ubuntu:24.04
 
 ARG DOCKER_ENGINE_VERSION
 ARG DOCKER_COMPOSE_VERSION
@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
       git \
       curl \
       default-jdk \
-      make python python-requests python-yaml \
+      make python3 python3-requests python3-yaml \
       && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
